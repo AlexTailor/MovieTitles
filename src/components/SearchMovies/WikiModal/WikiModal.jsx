@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function WikiModal(props) {
-  console.log(props.searchResult);
   const isMobile = navigator.userAgentData.mobile;
   const wikiUrl = isMobile
     ? props.searchResult.content_urls.mobile.page

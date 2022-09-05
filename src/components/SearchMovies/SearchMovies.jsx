@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import MoviesTable from "./MoviesTable/MoviesTable";
 import SearchBox from "./SearchBox/SearchBox";
+import LoadingSpinner from "../Spinner/LoadingSpinner";
 
 const MOVIES_QUERY = `
     query SearchMovies($title: String!) {
@@ -23,9 +24,11 @@ const MOVIES_QUERY = `
 export default function SearchMovies() {
   const [movieName, setMovieName] = useState("");
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    movieName &&
+    if (movieName) {
+      setIsLoading(true);
       axios
         .post(
           "https://tmdb.sandbox.zoosh.ie/dev/grphql",
@@ -35,13 +38,17 @@ export default function SearchMovies() {
           }
         )
         .then((res) => res.data.data)
-        .then((data) => setMovies(data.searchMovies));
+        .then((data) => {
+          setIsLoading(false);
+          setMovies(data.searchMovies);
+        });
+    }
   }, [movieName]);
 
   return (
     <div className="container">
       <SearchBox setMovieName={setMovieName} />
-      {!!movies && <MoviesTable movies={movies} />}
+      {isLoading ? <LoadingSpinner /> : <MoviesTable movies={movies} />}
     </div>
   );
 }
