@@ -5,14 +5,17 @@ export default function MovieRow(props) {
     <div className="col-sm-3">
       <div className="card text-center">
         <img
-          className="card-img-top image-size"
+          className="card-img-top img-thumbnail"
           src={props.movie.img.url}
           alt={props.movie.id}
         />
         <div className="card-body">
           <h5
             className="card-title"
-            onClick={() => props.setWikiSearch(props.movie.name)}
+            onClick={() => {
+              props.setMovieId(props.movie.id);
+              props.setWikiSearch(props.movie.name);
+            }}
           >
             {props.movie.name}
           </h5>

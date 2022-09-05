@@ -1,6 +1,11 @@
 import React from "react";
 
 export default function WikiModal(props) {
+  console.log(props.searchResult);
+  const isMobile = navigator.userAgentData.mobile;
+  const wikiUrl = isMobile
+    ? props.searchResult.content_urls.mobile.page
+    : props.searchResult.content_urls.desktop.page;
   return (
     <div className="modal" tabIndex="-1" role="dialog" style={props.style}>
       <div className="modal-dialog" role="document">
@@ -20,8 +25,21 @@ export default function WikiModal(props) {
             <p>{props.searchResult.extract}</p>
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-primary">
-              Save changes
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => window.open(wikiUrl)}
+            >
+              Open Wikipedia
+            </button>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() =>
+                window.open(`https://www.themoviedb.org/movie/${props.movieId}`)
+              }
+            >
+              Open TMDB
             </button>
             <button
               type="button"

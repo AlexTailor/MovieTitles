@@ -6,6 +6,7 @@ import WikiModal from "../WikiModal/WikiModal";
 export default function MoviesTable(props) {
   const [wikiSearch, setWikiSearch] = useState("");
   const [searchResult, setSearchResult] = useState("");
+  const [movieId, setMovieId] = useState("");
   useEffect(() => {
     wikiSearch &&
       axios
@@ -21,11 +22,17 @@ export default function MoviesTable(props) {
   return (
     <div className="row">
       {props.movies.map((movie) => (
-        <MovieRow key={movie.id} movie={movie} setWikiSearch={setWikiSearch} />
+        <MovieRow
+          key={movie.id}
+          movie={movie}
+          setWikiSearch={setWikiSearch}
+          setMovieId={setMovieId}
+        />
       ))}
       {searchResult && (
         <WikiModal
           searchResult={searchResult}
+          movieId={movieId}
           setSearchResult={setSearchResult}
           style={{ display: "block" }}
         />
