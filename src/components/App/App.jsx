@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
+import SearchMovies from "../SearchMovies/SearchMovies";
 import "./App.css";
-import SearchBox from "../SearchBox/SearchBox";
 
 function App() {
-  const [movieName, setMovieName] = useState("");
   return (
     <div className="App">
-      <SearchBox setMovieName={setMovieName} />
+      <SearchMovies />
     </div>
   );
 }
