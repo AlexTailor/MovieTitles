@@ -10,7 +10,12 @@ export default function MovieRow(props) {
           alt={props.movie.id}
         />
         <div className="card-body">
-          <h5 className="card-title">{props.movie.name}</h5>
+          <h5
+            className="card-title"
+            onClick={() => props.setWikiSearch(props.movie.name)}
+          >
+            {props.movie.name}
+          </h5>
         </div>
         <ul className="list-group list-group-flush">
           <li className="list-group-item">
