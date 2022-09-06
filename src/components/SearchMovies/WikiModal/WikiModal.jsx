@@ -6,7 +6,7 @@ export default function WikiModal(props) {
     ? props.searchResult.content_urls.mobile.page
     : props.searchResult.content_urls.desktop.page;
   return (
-    <div className="modal" tabIndex="-1" role="dialog" style={props.style}>
+    <div className="modal d-block" tabIndex="-1" role="dialog">
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">

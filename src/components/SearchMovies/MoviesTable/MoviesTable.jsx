@@ -34,7 +34,6 @@ export default function MoviesTable(props) {
           searchResult={searchResult}
           movieId={movieId}
           setSearchResult={setSearchResult}
-          style={{ display: "block" }}
         />
       )}
     </div>
